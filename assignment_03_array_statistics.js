@@ -42,5 +42,61 @@
 // =============================================================================
 // YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
 // =============================================================================
+const readlineSync = require('readline-sync');
 
+function sum(arr) {
+    let s = 0;
+    for (let i = 0; i < arr.length; i++) {
+        s += arr[i];
+    }
+    return s;
+}
 
+function average(arr) {
+    if (arr.length === 0) return 0;
+    return sum(arr) / arr.length;
+}
+
+function maximum(arr) {
+    if (arr.length === 0) return undefined;
+    let max = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+    return max;
+}
+
+function minimum(arr) {
+    if (arr.length === 0) return undefined;
+    let min = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] < min) {
+            min = arr[i];
+        }
+    }
+    return min;
+}
+
+function main() {
+    const n = readlineSync.questionInt('How many numbers? ');
+    if (n <= 0) {
+        console.log('Error: Number of terms must be a positive integer.');
+        return;
+    }
+
+    const arr = [];
+    for (let i = 0; i < n; i++) {
+        const val = readlineSync.questionInt(`Enter number ${i + 1}: `);
+        arr.push(val);
+    }
+
+    console.log('\nResults:');
+    console.log(`Sum:     ${sum(arr)}`);
+    console.log(`Average: ${average(arr)}`);
+    console.log(`Maximum: ${maximum(arr)}`);
+    console.log(`Minimum: ${minimum(arr)}`);
+}
+
+main();
